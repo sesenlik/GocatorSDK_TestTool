@@ -240,7 +240,6 @@ namespace Test_GoSDK
             GoExtParamBool CaptureMirror = (GoExtParamBool)tool.FindParameterById("Capture" + surfaceIndex.ToString() + "Mirror");
             CaptureMirror.Value = mirrored;
 
-            var x = 1;
         }
     }
 }
