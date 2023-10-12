@@ -29,6 +29,8 @@ namespace Test_GoSDK
 
                 Gocator.Gocator gocator = new Gocator.Gocator("127.0.0.1");
 
+                gocator.ClearAllTools();
+
                 StitchParam[] stitchParams = new StitchParam[5];
                 stitchParams[0] = new StitchParam(true, 100.001f, 200.002f, 300.003f, 400.004f, 500.005f, 600.006f, true);
                 stitchParams[1] = new StitchParam(true, 100.101f, 200.202f, 300.303f, 400.404f, 500.505f, 600.606f, true);
