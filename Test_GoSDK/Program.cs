@@ -25,6 +25,20 @@ namespace Test_GoSDK
         static int Main(string[] args)
         {
 
+            Gocator.Gocator gocator = new Gocator.Gocator("127.0.0.1");
+            var result = gocator.WaitMeasurementResult();
+
+            //testAddSurfaceStitch();
+            // wait for ENTER key
+            Console.WriteLine("\nPress ENTER to continue");
+            while (Console.ReadKey().Key != ConsoleKey.Enter) { }
+
+            return 1;
+        }
+
+
+        public static void testReceiveMeas()
+        {
             try
             {
                 KApiLib.Construct();
@@ -40,77 +54,6 @@ namespace Test_GoSDK
                 //retrieve tools handle
                 GoTools tools = sensor.Tools;
 
-                //for (int i = 0; i < tools.ToolCount; i++)
-                //{
-                //    var x = tools.GetTool(i);
-                //    for (int j = 0; j < x.MeasurementCount; j++)
-                //    {
-                //        var y = x.GetMeasurement(j);
-                //    }
-                //}
-                //system.Start();
-
-                List<MeasurementData> measurements = new List<MeasurementData>();
-                UInt32 id;
-                //GoDataSet dataSet = new GoDataSet();
-                //dataSet = system.ReceiveData(30000000);
-                // retrieve tools handle
-                //collection_tools = sensor.Tools;
-
-                //for (UInt32 i = 0; i < dataSet.Count; i++)
-                //{
-
-                //    GoDataMsg dataObj = (GoDataMsg)dataSet.Get(i);
-                //    switch (dataObj.MessageType)
-                //    {
-                //        case GoDataMessageType.Stamp:
-                //            {
-                //                GoStampMsg stampMsg = (GoStampMsg)dataObj;
-                //                for (UInt32 j = 0; j < stampMsg.Count; j++)
-                //                {
-                //                    GoStamp stamp = stampMsg.Get(j);
-                //                    Console.WriteLine("Frame Index = {0}", stamp.FrameIndex);
-                //                    Console.WriteLine("Time Stamp = {0}", stamp.Timestamp);
-                //                    Console.WriteLine("Encoder Value = {0}", stamp.Encoder);
-                //                    Console.WriteLine("");
-                //                }
-                //            }
-                //            break;
-                //        case GoDataMessageType.Measurement:
-                //            {
-                //                GoMeasurementMsg measurementMsg = (GoMeasurementMsg)dataObj;
-                //                for (UInt32 k = 0; k < measurementMsg.Count; ++k)
-                //                {
-                //                    GoMeasurementData measurementData = measurementMsg.Get(k);
-
-                //                    Console.WriteLine("ID: {0}", measurementMsg.Id);
-
-                //                    //1. Retrieve Id
-                //                    id = measurementMsg.Id;
-                //                    //2. Retrieve the measurement from the set of tools using measurement ID
-                //                    GoMeasurement measurement = tools.FindMeasurementById(id);
-                //                    var toolName = GetToolName(tools, id);
-
-                //                    MeasurementData measData = new MeasurementData();
-                //                    measData.Id = id;
-                //                    measData.ToolName = toolName;
-                //                    measData.Name = measurement.Name;
-                //                    measData.Value = measurementData.Value;
-                //                    measData.Decision = measurementData.Decision.ToString();
-                //                    measurements.Add(measData);
-
-                //                    Console.WriteLine("Tool Name is : {0}", toolName);
-                //                    //3. Print the measurement name 
-                //                    Console.WriteLine("Measurement Name is : {0}", measurement.Name);
-                //                    Console.WriteLine("Value: {0}", measurementData.Value);
-                //                    Console.WriteLine("Decision: {0}", measurementData.Decision);
-                //                }
-                //            }
-                //            break;
-                //    }
-                //}
-                //system.Stop();
-
                 ResultData result = WaitMeasurementResult(system, sensor);
                 Console.WriteLine("Done");
             }
@@ -118,16 +61,7 @@ namespace Test_GoSDK
             {
                 Console.WriteLine("Error: {0}", ex.ToString());
             }
-
-
-            //testAddSurfaceStitch();
-            // wait for ENTER key
-            Console.WriteLine("\nPress ENTER to continue");
-            while (Console.ReadKey().Key != ConsoleKey.Enter) { }
-
-            return 1;
         }
-
 
         public static string GetToolName(GoTools tools, uint id)
         {
