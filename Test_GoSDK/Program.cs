@@ -9,7 +9,7 @@ using Lmi3d.GoSdk.Tools;
 using Lmi3d.GoSdk.Outputs;
 using Lmi3d.Zen;
 using Lmi3d.Zen.Io;
-using Gocator;
+using GocatorHelper;
 using System.Data;
 using Lmi3d.GoSdk.Messages;
 
@@ -25,7 +25,7 @@ namespace Test_GoSDK
         static int Main(string[] args)
         {
 
-            Gocator.Gocator gocator = new Gocator.Gocator("127.0.0.1");
+            Gocator gocator = new Gocator("127.0.0.1");
             var result = gocator.WaitMeasurementResult();
 
             //testAddSurfaceStitch();
@@ -168,7 +168,7 @@ namespace Test_GoSDK
             {
                 //testFunctions();
 
-                Gocator.Gocator gocator = new Gocator.Gocator("127.0.0.1");
+                global::GocatorHelper.Gocator gocator = new global::GocatorHelper.Gocator("127.0.0.1");
 
 
 

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using Test_GoSDK;
 using Lmi3d.GoSdk.Messages;
 
-namespace Gocator
+namespace GocatorHelper
 {
     public class StitchParam
     {
@@ -49,6 +49,10 @@ namespace Gocator
         private KIpAddress ipAddress { get; set; }
         private GoSystem System { get; set; }
         private GoSensor Sensor { get; set; }
+        private bool Initialized { get; set; }
+        private bool FoundSensor { get; set; }
+        private bool Connected { get; set; }
+        private bool DataEnabled { get; set; }
         public Gocator(string IPAddress)
         {
             this.IPAddress = IPAddress;
@@ -58,21 +62,49 @@ namespace Gocator
             this.EnableData(true);
         }
 
-
+        private void MainLoop()
+        {
+            if (!this.Init()) return;
+            if (!this.FindSensor()) return;
+            if (!this.Connect()) return;
+            if (!this.EnableData(true)) return;
+            bool Ready = this.Initialized && this.FoundSensor && this.Connected && this.DataEnabled;
+        }
 
         bool Init()
         {
-            KApiLib.Construct();
-            GoSdkLib.Construct();
-            this.System = new GoSystem();
+            try
+            {
+                KApiLib.Construct();
+                GoSdkLib.Construct();
+                this.System = new GoSystem();
+                this.Initialized = true;
+                return true;
+            }
+            catch (Exception)
+            {
+                this.Initialized = false;
+                return false;
+                throw;
+            }
+            
 
-            return true;
+            
         }
 
         bool FindSensor()
         {
-            this.ipAddress = KIpAddress.Parse(this.IPAddress);
-            this.Sensor = this.System.FindSensorByIpAddress(this.ipAddress);
+            try
+            {
+                this.ipAddress = KIpAddress.Parse(this.IPAddress);
+                this.Sensor = this.System.FindSensorByIpAddress(this.ipAddress);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
 
             return true;
         }
