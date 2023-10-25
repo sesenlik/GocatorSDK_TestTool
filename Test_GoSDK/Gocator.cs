@@ -23,6 +23,10 @@ namespace GocatorHelper
         public float Rz { get; set; }
         public bool Mirrored { get; set; }
 
+        public StitchParam()
+        {
+            
+        }
         public StitchParam(bool enable, float X, float Y, float Z, float Rx, float Ry, float Rz, bool mirrored)
         {
             this.Enable = enable;
@@ -85,7 +89,7 @@ namespace GocatorHelper
             {
                 this.Initialized = false;
                 return false;
-                throw;
+                //throw;
             }
             
 
@@ -102,7 +106,7 @@ namespace GocatorHelper
             catch (Exception)
             {
 
-                throw;
+                //throw;
             }
             
 
@@ -111,9 +115,19 @@ namespace GocatorHelper
 
         bool Connect()
         {
-            this.Sensor.Connect();
+            try
+            {
+                this.Sensor.Connect();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+                //throw;
+            }
+            
 
-            return true;
+            
         }
 
         bool EnableData(bool enable)
