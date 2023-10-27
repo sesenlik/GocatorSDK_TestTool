@@ -26,7 +26,7 @@ namespace Test_GoSDK
         {
 
             Gocator gocator = new Gocator("127.0.0.1");
-            var result = gocator.WaitMeasurementResult();
+            //var result = gocator.WaitMeasurementResult();
 
             //testAddSurfaceStitch();
             // wait for ENTER key

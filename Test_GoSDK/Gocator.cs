@@ -64,6 +64,11 @@ namespace GocatorHelper
             this.FindSensor();
             this.Connect();
             this.EnableData(true);
+            var test = this.Sensor.FileExists("TubMeasurement.job");
+            //this.Sensor.DeleteFile("TubMeasurement.job");
+            this.Sensor.UploadFile("D:\\empty.job", "DENEME12345.job");
+            test = this.Sensor.FileExists("DENEME12345.job");
+            //var test = this.Sensor.DefaultJob;
         }
 
         private void MainLoop()
