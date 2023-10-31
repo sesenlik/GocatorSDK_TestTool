@@ -26,6 +26,12 @@ namespace Test_GoSDK
         {
 
             Gocator gocator = new Gocator("127.0.0.1");
+            //while (true)
+            //{
+            //    gocator.GetStates();
+            //}
+
+
             //var result = gocator.WaitMeasurementResult();
 
             //testAddSurfaceStitch();

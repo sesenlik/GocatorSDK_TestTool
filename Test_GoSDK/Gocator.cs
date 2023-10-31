@@ -80,6 +80,14 @@ namespace GocatorHelper
             bool Ready = this.Initialized && this.FoundSensor && this.Connected && this.DataEnabled;
         }
 
+        public void GetStates()
+        {
+            var state = this.Sensor.State;
+            //var states = this.Sensor.States;
+            GoStates states = this.Sensor.States;
+            states.
+        }
+
         bool Init()
         {
             try
